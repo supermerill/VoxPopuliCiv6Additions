@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# ModBuddy Solution File, Format Version 11.00
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7a) Civ6AdditionBuilder", "Civ6AdditionForCP\(7a) Civ6AdditionBuilder.civ5proj", "{7D1E291D-B339-485F-BDD0-510198519417}"
+EndProject
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7a) Civ6AdditionEureka", "(7a) Civ6AdditionEureka\(7a) Civ6AdditionEureka.civ5proj", "{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Default|x86 = Default|x86
+		Deploy Only|x86 = Deploy Only|x86
+		Package Only|x86 = Package Only|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7D1E291D-B339-485F-BDD0-510198519417}.Default|x86.ActiveCfg = Default|x86
+		{7D1E291D-B339-485F-BDD0-510198519417}.Default|x86.Build.0 = Default|x86
+		{7D1E291D-B339-485F-BDD0-510198519417}.Deploy Only|x86.ActiveCfg = Deploy Only|x86
+		{7D1E291D-B339-485F-BDD0-510198519417}.Deploy Only|x86.Build.0 = Deploy Only|x86
+		{7D1E291D-B339-485F-BDD0-510198519417}.Package Only|x86.ActiveCfg = Package Only|x86
+		{7D1E291D-B339-485F-BDD0-510198519417}.Package Only|x86.Build.0 = Package Only|x86
+		{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}.Default|x86.ActiveCfg = Default|x86
+		{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}.Default|x86.Build.0 = Default|x86
+		{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}.Deploy Only|x86.ActiveCfg = Deploy Only|x86
+		{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}.Deploy Only|x86.Build.0 = Deploy Only|x86
+		{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}.Package Only|x86.ActiveCfg = Package Only|x86
+		{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}.Package Only|x86.Build.0 = Package Only|x86
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
