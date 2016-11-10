@@ -3,6 +3,7 @@
 
 
 ALTER TABLE Technologies ADD EurekaPerMillion INTEGER DEFAULT 0;
+ALTER TABLE Technologies ADD MaxEurekaCount INTEGER DEFAULT 3;
 
 -- 10 000 = 1% reduction per eureka count
 --ancient
@@ -56,8 +57,13 @@ UPDATE Technologies SET EurekaPerMillion = 100000 WHERE Type = 'TECH_ACOUSTICS';
 UPDATE Technologies SET EurekaPerMillion = 100000 WHERE Type = 'TECH_NAVIGATION';
 UPDATE Technologies SET EurekaPerMillion = 100000 WHERE Type = 'TECH_METALLURGY';
 
-
-
+-- todo: text
+UPDATE Language_en_US
+SET Text = 'Eureka: build a scout (10% each, max 30%).'
+WHERE Tag = 'TXT_KEY_TECH_TRAPPING_HELP_EUREKA';
+UPDATE Language_en_US
+SET Text = '[newline]Eurekas: {1_NbEurekas} ({3_PercentEurekas}%) / {2_NbMaxEurekas} ({4_PercentMaxEurekas}%)'
+WHERE Tag = 'TXT_KEY_EUREKA_TOOLTIP';
 
 --activate TileFeatureChanged event
 UPDATE CustomModOptions
