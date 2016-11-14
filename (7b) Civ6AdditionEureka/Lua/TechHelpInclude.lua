@@ -30,7 +30,7 @@ function GetHelpTextForTech( iTechID )
 		local bShowProgress = true;
 	
 		-- eureka
-		local eurekaLine = CreateEurekaResume(pTeamTechs, pTechInfo);
+		local eurekaLine = CreateEurekaResume(pActiveTeam, pTeamTechs, pTechInfo);
 		if(eurekaLine ~= "") then
 			strHelpText = strHelpText .. "[ICON_BULLET]" .. eurekaLine .. "[NEWLINE]";
 		
