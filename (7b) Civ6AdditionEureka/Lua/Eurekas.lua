@@ -5,47 +5,8 @@
 print("$$ Eurekas is loading $$");
 
 include("PlotIterators")
+include("EurekaLib")
 
-function IncrementEureka(pPlayer, iTech, iMax)
-	local pTeamTech = Teams[pPlayer:GetTeam()]:GetTeamTechs();
-	if(not pTeamTech:HasTech(iTech)) then
-		local nbEureka = pTeamTech:GetEurekaCounter(iTech);
-		if(nbEureka<iMax) then
-			pTeamTech:SetEurekaCounter(iTech, nbEureka+1);
-			local pTechInfo = GameInfo.Technologies[iTech];
-			local name = Locale.ConvertTextKey(pTechInfo.Description);
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_EUREKA_UPDATE,
-				Locale.ConvertTextKey("TXT_KEY_EUREKA_NOTIFICATION", name, nbEureka+1, iMax),
-				Locale.ConvertTextKey("TXT_KEY_EUREKA_NOTIFICATION_TITLE"),-1,-1,-1,iTech);
-		end
-	end
-end
-function IncrementEurekaGuarded(pPlayer, pTeamTech, iTech, iAmount, iMax)
-	if(not pTeamTech:HasTech(iTech) and iAmount >0) then
-		local nbEureka = pTeamTech:GetEurekaCounter(iTech);
-		if(nbEureka < iMax) then
-			pTeamTech:SetEurekaCounter(iTech, math.min(iMax,nbEureka+iAmount));
-			local pTechInfo = GameInfo.Technologies[iTech];
-			local name = Locale.ConvertTextKey(pTechInfo.Description);
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_EUREKA_UPDATE,
-				Locale.ConvertTextKey("TXT_KEY_EUREKA_NOTIFICATION", name, math.min(iMax,nbEureka+iAmount), iMax),
-				Locale.ConvertTextKey("TXT_KEY_EUREKA_NOTIFICATION_TITLE"),-1,-1,-1,iTech);
-		end
-	end
-end
-function MaxEureka(pPlayer, pTeamTech, iTech, iAmountNow, iMax)
-	if(not pTeamTech:HasTech(iTech) and iAmountNow >0) then
-		local nbEureka = pTeamTech:GetEurekaCounter(iTech);
-		if(nbEureka < iMax and iAmountNow > nbEureka) then
-			pTeamTech:SetEurekaCounter(iTech, math.min(iMax,iAmountNow));
-			local pTechInfo = GameInfo.Technologies[iTech];
-			local name = Locale.ConvertTextKey(pTechInfo.Description);
-			pPlayer:AddNotification(NotificationTypes.NOTIFICATION_EUREKA_UPDATE,
-				Locale.ConvertTextKey("TXT_KEY_EUREKA_NOTIFICATION", name, math.min(iMax,iAmountNow), iMax),
-				Locale.ConvertTextKey("TXT_KEY_EUREKA_NOTIFICATION_TITLE"),-1,-1,-1,iTech);
-		end
-	end
-end
 
 GameEvents.PlayerDoTurn.Add(function(iPlayer)
 print(string.format("PlayerDoTurn ! "));
@@ -129,18 +90,18 @@ if(iPlayer >=0 and iUnit>=0) then
 	local pUnit = pPlayer:GetUnitByID(iUnit);
 	local iUnitType = pUnit:GetUnitType();
 	print(string.format("CityTrained unit %s",pUnit:GetName()));
-	--scout for trapping
-	if(iUnitType == GameInfo.Units.UNIT_SCOUT.ID or iUnitType == GameInfo.Units.UNIT_SHOSHONE_PATHFINDER.ID) then 
-		IncrementEureka(pPlayer, GameInfo.Technologies.TECH_TRAPPING.ID, 3);
-	end
-	--workers for animal husbandery
-	if(iUnitType == GameInfo.Units.UNIT_WORKER.ID) then 
-		IncrementEureka(pPlayer, GameInfo.Technologies.TECH_EDUCATION.ID, 3);
-	end
-	--warriors for mining
-	if(iUnitType == GameInfo.Units.UNIT_WARRIOR.ID or iUnitType == GameInfo.Units.UNIT_AZTEC_JAGUAR.ID) then 
-		IncrementEureka(pPlayer, GameInfo.Technologies.TECH_MINING.ID, 5);
-	end
+	--scout for trapping now tundra
+	--if(iUnitType == GameInfo.Units.UNIT_SCOUT.ID or iUnitType == GameInfo.Units.UNIT_SHOSHONE_PATHFINDER.ID) then 
+	--	IncrementEureka(pPlayer, GameInfo.Technologies.TECH_TRAPPING.ID, 3);
+	--end
+	--workers for animal husbandery now unfeatured hill
+	--if(iUnitType == GameInfo.Units.UNIT_WORKER.ID) then 
+	--	IncrementEureka(pPlayer, GameInfo.Technologies.TECH_EDUCATION.ID, 3);
+	--end
+	--warriors for mining now mine lux
+	--if(iUnitType == GameInfo.Units.UNIT_WARRIOR.ID or iUnitType == GameInfo.Units.UNIT_AZTEC_JAGUAR.ID) then 
+	--	IncrementEureka(pPlayer, GameInfo.Technologies.TECH_MINING.ID, 5);
+	--end
 	--archers for military training
 	if(iUnitType == GameInfo.Units.UNIT_ARCHER.ID or iUnitType == GameInfo.Units.UNIT_INCAN_SLINGER.ID) then 
 		IncrementEureka(pPlayer, GameInfo.Technologies.TECH_ARCHERY.ID, 6);
@@ -184,15 +145,15 @@ GameEvents.CityConstructed.Add(function(iPlayer, iCity, iBuilding, bGoldBuy, bFa
 if(iPlayer >=0 and iBuilding>=0) then
 	local pPlayer = Players[iPlayer];
 	local pTeamTech = Teams[pPlayer:GetTeam()]:GetTeamTechs();
-	-- shrine and monument for wheel
-	if(iBuilding == GameInfo.Buildings.BUILDING_SHRINE.ID or iBuilding == GameInfo.Buildings.BUILDING_MONUMENT.ID
-	 or iBuilding == GameInfo.Buildings.BUILDING_MONUMENT.ID or iBuilding == GameInfo.Buildings.BUILDING_STELE.ID) then 
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_THE_WHEEL.ID, 1, 3);
-	end
-	-- buildings for construction (named masonery, but it's construction)
-	if(not pTeamTech:HasTech(GameInfo.Technologies.TECH_MASONRY.ID)) then
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_MASONRY.ID, 1, 10);
-	end
+	-- shrine and monument for wheel now jungle
+	--if(iBuilding == GameInfo.Buildings.BUILDING_SHRINE.ID or iBuilding == GameInfo.Buildings.BUILDING_MONUMENT.ID
+	-- or iBuilding == GameInfo.Buildings.BUILDING_MONUMENT.ID or iBuilding == GameInfo.Buildings.BUILDING_STELE.ID) then 
+	--	IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_THE_WHEEL.ID, 1, 3);
+	--end
+	-- buildings for construction (named masonery, but it's construction) -- now quarry lux
+	--if(not pTeamTech:HasTech(GameInfo.Technologies.TECH_MASONRY.ID)) then
+	--	IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_MASONRY.ID, 1, 10);
+	--end
 	-- market for mathematics
 	if(iBuilding == GameInfo.Buildings.BUILDING_MARKET.ID or iBuilding == GameInfo.Buildings.BUILDING_BAZAAR.ID) then 
 		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_MATHEMATICS.ID, 1, 3);
@@ -204,19 +165,19 @@ if(iPlayer >=0 and iBuilding>=0) then
 end
 end);
 
-GameEvents.PlayerAdoptPolicyBranch.Add(function(iPlayer, iPolicy)
-if(iPlayer >=0 and iPolicy>=0) then
-	-- number of policies for pottery 
-	IncrementEureka(Players[iPlayer], GameInfo.Technologies.TECH_POTTERY.ID, 3);
-end
-end);
+--GameEvents.PlayerAdoptPolicyBranch.Add(function(iPlayer, iPolicy)
+--if(iPlayer >=0 and iPolicy>=0) then
+--	-- number of policies for pottery -- now wheat
+--	IncrementEureka(Players[iPlayer], GameInfo.Technologies.TECH_POTTERY.ID, 3);
+--end
+--end);
 
-GameEvents.PlayerAdoptPolicy.Add(function(iPlayer, iPolicy)
-if(iPlayer >=0 and iPolicy>=0) then
-	-- number of policies for pottery 
-	IncrementEureka(Players[iPlayer], GameInfo.Technologies.TECH_POTTERY.ID, 3);
-end
-end);
+--GameEvents.PlayerAdoptPolicy.Add(function(iPlayer, iPolicy)
+--if(iPlayer >=0 and iPolicy>=0) then
+--	-- number of policies for pottery  -- now wheat
+--	IncrementEureka(Players[iPlayer], GameInfo.Technologies.TECH_POTTERY.ID, 3);
+--end
+--end);
 
 GameEvents.PlayerCityFounded.Add(function(iPlayer, iPlotX, iPlotY)
 if(iPlayer >=0 and iPlotX >=0 and iPlotY >=0) then
@@ -234,30 +195,77 @@ if(iPlayer >=0 and iPlotX >=0 and iPlotY >=0) then
 	local nbForest = 0;
 	local nbDesert = 0;
 	local nbMountain = 0;
-	for pAreaPlot in PlotAreaSweepIterator(pCity:Plot(), 2) do
+	local nbTundra = 0;
+	local nbWheat = 0;
+	local nbJungle = 0;
+	local nbHills = 0;
+	local nbMineLux = 0;
+	local nbQuarryLux = 0;
+	for pAreaPlot in PlotAreaSpiralIterator(pCity:Plot(), 2) do
 		local iResourceType = pAreaPlot:GetResourceType(pPlayer:GetTeam());
+		local terrainType = pAreaPlot:GetTerrainType();
+		local featureType = pAreaPlot:GetFeatureType();
 		local iResourceUsageType = -1;
 		if(iResourceType >=0) then
 			iResourceUsageType = Game.GetResourceUsageType(iResourceType);
 		end
-		if(pAreaPlot:GetRevealedImprovementType(pTeam, false) == GameInfo.Improvements.IMPROVEMENT_PLANTATION.ID
+		if(pAreaPlot:CanHaveImprovement(GameInfo.Improvements.IMPROVEMENT_PLANTATION.ID, pTeam:GetID())
 			and iResourceUsageType == ResourceUsageTypes.RESOURCEUSAGE_LUXURY) then 
 			nbLuxPlant = nbLuxPlant + 1;
 		end
-		if(pAreaPlot:GetFeatureType() == FeatureTypes.FEATURE_FOREST) then 
+		if(featureType == FeatureTypes.FEATURE_FOREST) then 
 			nbForest = nbForest + 1;
 		end
-		if(pAreaPlot:GetTerrainType () == TerrainTypes.TERRAIN_DESERT) then 
+		if(featureType == FeatureTypes.FEATURE_JUNGLE) then 
+			nbJungle = nbJungle + 1;
+		end
+		if(terrainType == TerrainTypes.TERRAIN_DESERT) then 
 			nbDesert = nbDesert + 1;
 		end
-		if(pAreaPlot:GetTerrainType () == TerrainTypes.TERRAIN_MOUNTAIN) then 
+		if(terrainType == TerrainTypes.TERRAIN_MOUNTAIN) then 
 			nbMountain = nbMountain + 1;
+		end
+		if(terrainType == TerrainTypes.TERRAIN_TUNDRA) then 
+			nbTundra = nbTundra + 1;
+		end
+		if(pAreaPlot:IsHills() and iResourceUsageType ~= ResourceUsageTypes.RESOURCEUSAGE_LUXURY and featureType == FeatureTypes.NO_FEATURE) then 
+			nbHills = nbHills + 1;
 		end
 		if(iResourceUsageType == ResourceUsageTypes.RESOURCEUSAGE_LUXURY) then
 			nbLux = nbLux + 1;
 		end
+		if(iResourceType == 6) then --ResourceTypes.RESOURCE_WHEAT) then
+			nbWheat = nbWheat + 1;
+		end
+		if(pAreaPlot:CanHaveImprovement(GameInfo.Improvements.IMPROVEMENT_MINE.ID, pTeam:GetID())
+			and iResourceUsageType == ResourceUsageTypes.RESOURCEUSAGE_LUXURY) then
+			nbMineLux = nbMineLux + 1;
+		end
+		if(pAreaPlot:CanHaveImprovement(GameInfo.Improvements.IMPROVEMENT_QUARRY.ID, pTeam:GetID())
+			and iResourceUsageType == ResourceUsageTypes.RESOURCEUSAGE_LUXURY) then
+			nbQuarryLux = nbQuarryLux + 1;
+		end
+		
 	end
-	--number of nearby (lux, because bananas aren't revealed) plantation at 2 hex of a new city for CALENDAR
+	if(nbTundra>0) then
+		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_TRAPPING.ID, nbTundra, 6);
+	end
+	if(nbWheat>0) then
+		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_POTTERY.ID, nbWheat, 3);
+	end
+	if(nbJungle>0) then
+		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_THE_WHEEL.ID, nbJungle, 6);
+	end
+	if(nbHills>0) then
+		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_ANIMAL_HUSBANDRY.ID, nbHills, 10);
+	end
+	if(nbMineLux>0) then
+		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_MINING.ID, nbMineLux, 5);
+	end
+	if(nbQuarryLux>0) then
+		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_MASONRY.ID, nbQuarryLux, 3);
+	end
+	--number of nearby plantation lux at 2 hex of a new city for CALENDAR
 	if(nbLuxPlant>0) then
 		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_CALENDAR.ID, nbLuxPlant, 5);
 	end

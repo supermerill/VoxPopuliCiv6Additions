@@ -2,13 +2,13 @@
 <Project DefaultTargets="Deploy" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
-    <ProjectGuid>{7d1e291d-b339-485f-bdd0-510198519417}</ProjectGuid>
-    <Name>(7a) Civ6AdditionBuilder</Name>
-    <Guid>2ef1cf97-62d6-419a-868d-944de6eb7f17</Guid>
-    <ModVersion>4</ModVersion>
-    <Stability>Stable</Stability>
-    <Teaser>Transform workers into builders. Roads and railroads are built by trade routes.</Teaser>
-    <Description>Transform workers into builders. Roads and railroads are built by trade routes.</Description>
+    <ProjectGuid>42BE3F07-762B-4449-A334-A4EF1966BD22</ProjectGuid>
+    <Name>(7b) Civ6AdditionEureka</Name>
+    <Guid>5acc6f58-862d-4d61-9bf1-0e5dbf938021</Guid>
+    <ModVersion>2</ModVersion>
+    <Stability>Beta</Stability>
+    <Teaser>Add eureka! as a science reduction for techs when players do some special actions.</Teaser>
+    <Description>Add eureka! as a science reduction for techs when players do some special actions.</Description>
     <Authors>merill</Authors>
     <SpecialThanks>VP team</SpecialThanks>
     <AffectsSavedGames>false</AffectsSavedGames>
@@ -17,8 +17,8 @@
     <SupportsMultiplayer>true</SupportsMultiplayer>
     <SupportsHotSeat>true</SupportsHotSeat>
     <SupportsMac>true</SupportsMac>
-    <AssemblyName>Civ6AdditionBuilder</AssemblyName>
-    <RootNamespace>Civ6AdditionBuilder</RootNamespace>
+    <AssemblyName>(7a) Civ6AdditionEureka</AssemblyName>
+    <RootNamespace>(7a) Civ6AdditionEureka</RootNamespace>
     <ModReferences />
     <ModDependencies>
       <Association>
@@ -30,8 +30,8 @@
       </Association>
       <Association>
         <Type>Mod</Type>
-        <Name>Community Balance Overhaul - Compatibility Files (EUI)</Name>
-        <Id>24923240-e4fb-4bf6-8f0e-6e5b6cf4d3c2</Id>
+        <Name>CBO compatibility files (no-eui)</Name>
+        <Id>828b5b4b-7c62-4afb-a43f-034b596ef5e4</Id>
         <MinVersion>0</MinVersion>
         <MaxVersion>999</MaxVersion>
       </Association>
@@ -40,29 +40,18 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>Sql/Sql_changes.sql</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>Xml/Text_en_US.xml</FileName>
-      </Action>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>Sql/Civilopedia_changes.sql</FileName>
+        <FileName>Sql/technology_eureka.sql</FileName>
       </Action>
     </ModActions>
     <ModContent>
-      <Content xmlns="">
+      <Content>
         <Type>InGameUIAddin</Type>
-        <Name>remove_roads</Name>
-        <Description>remove ia building road mission</Description>
-        <FileName>Lua/IA_roads_temp_fix.lua</FileName>
+        <Name>EurekasLua</Name>
+        <Description>Eureka logic</Description>
+        <FileName>Lua/Eurekas.lua</FileName>
       </Content>
     </ModContent>
     <ReloadUnitSystem>false</ReloadUnitSystem>
-    <Homepage>http://forums.civfanatics.com/threads/civ6-additions-to-cp-roads-builders.603151/</Homepage>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
     <OutputPath>.</OutputPath>
@@ -81,29 +70,33 @@
     <Folder Include="Sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lua\IA_roads_temp_fix.lua">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="Lua\UnitPanel.lua">
+    <Content Include="Lua\EurekaLib.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Sql\Civilopedia_changes.sql">
+    <Content Include="Lua\Eurekas.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Sql\Sql_changes.sql">
+    <Content Include="Lua\NotificationPanel.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\PlotIterators.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Lua\TechHelpInclude.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Sql\technology_eureka.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Sql\VP_changes.sql">
+    <Content Include="Xml\NotificationPanel.xml">
       <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
-    </Content>
-    <Content Include="Xml\Text_en_US.xml">
-      <SubType>Lua</SubType>
-      <ImportIntoVFS>False</ImportIntoVFS>
+      <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Firaxis\ModBuddy\Civ5Mod.targets" />

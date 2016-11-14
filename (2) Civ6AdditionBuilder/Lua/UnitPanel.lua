@@ -726,8 +726,11 @@ function UpdateUnitStats(unit)
         Controls.UnitStatRangedAttack:SetToolTipString(rangeStrengthTT);
         Controls.UnitStatNameRangedAttack:SetToolTipString(rangeStrengthTT);
     elseif unit:GetBuilderStrength() > 0 then
-		Controls.UnitStatRangedAttack:SetText( L"TXT_KEY_UPANEL_BUILDER" .." " .. unit:GetBuilderStrength() )
-		Controls.UnitStatRangedAttack:LocalizeAndSetToolTip( "TXT_KEY_UPANEL_BUILDER_TT", unit:GetName() )
+        Controls.UnitRangedAttackBox:SetHide(false);
+        Controls.UnitStatNameRangedAttack:SetText("");
+        Controls.UnitStatNameRangedAttack:SetToolTipString("");
+		Controls.UnitStatRangedAttack:SetText( Locale.ConvertTextKey("TXT_KEY_UPANEL_BUILDER", unit:GetBuilderStrength() ));
+		Controls.UnitStatRangedAttack:LocalizeAndSetToolTip( "TXT_KEY_UPANEL_BUILDER_TT", unit:GetName() );
 	else
         Controls.UnitRangedAttackBox:SetHide(true);
     end        
@@ -1551,6 +1554,11 @@ function TipHandler( control )
 			iExtraBuildRate = unit:WorkRate(true, iBuildID);
 		end
 		
+		local buildStrengthNeeded = pActivePlayer:GetImprovementBuilderCost(buildID)
+		if buildStrengthNeeded > 0 then
+			strBuildTurnsString = "   " .. Locale.ConvertTextKey("TXT_KEY_STR_BUILDER_COST", buildStrengthNeeded )
+		end
+
 		local iBuildTurns = pPlot:GetBuildTurnsLeft(iBuildID, Game.GetActivePlayer(), iExtraBuildRate, iExtraBuildRate);
 		--print("iBuildTurns: " .. iBuildTurns);
 		if (iBuildTurns > 1) then
@@ -1636,6 +1644,12 @@ function TipHandler( control )
 			local bFeatureRemoved = pPlot:IsBuildRemovesFeature(iBuildID);
 			if (bFeatureRemoved) then
 				
+				
+				if(pImprovement)then
+					-- hard set, todo: get from dll, but we need to know what buildid to use to remove an unknown feature
+					strBuildTurnsString = strBuildTurnsString .. " + " .. Locale.ConvertTextKey("TXT_KEY_STR_BUILDER_COST_SMALL", 100 )
+				end
+
 				-- Add spacing for all entries after the first
 				if (bFirstEntry) then
 					bFirstEntry = false;

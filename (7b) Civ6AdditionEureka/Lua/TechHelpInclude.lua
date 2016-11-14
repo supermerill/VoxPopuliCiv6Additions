@@ -1,6 +1,7 @@
 -------------------------------------------------
 -- Help text for techs
 -------------------------------------------------
+include("EurekaLib")
 
 function GetHelpTextForTech( iTechID )
 	local pTechInfo = GameInfo.Technologies[iTechID];
@@ -24,47 +25,20 @@ function GetHelpTextForTech( iTechID )
 
 		-- Cost/Progress
 		strHelpText = strHelpText .. "[NEWLINE]-------------------------[NEWLINE]";
-
-		-- eureka
-		local iNbEureka = pTeamTechs:GetEurekaCounter(iTechID);
-		local iEurekaPerMillion = 20;
-		local iMaxEurekaCount = 20;
-		for row in DB.Query("SELECT EurekaPerMillion, MaxEurekaCount FROM Technologies WHERE ID = " .. iTechID) do
-			iEurekaPerMillion = row.EurekaPerMillion;
-			iMaxEurekaCount = row.MaxEurekaCount;
-		end
-		if(iEurekaPerMillion > 0) then
-			--print("EEEEE Eurekas !! iNbEureka=" .. iNbEureka);
-			--print("EEEEE Eurekas !! iEurekaPerMillion=" .. iEurekaPerMillion);
-			--print("EEEEE Eurekas !! iTechID=" .. iTechID);
-			--print("EEEEE Eurekas !! iMaxEurekaCount=" .. iMaxEurekaCount);
-			local iReduction = iNbEureka * iEurekaPerMillion;
-			iReduction = iReduction / 10000;
-			local iMaxReduction = iMaxEurekaCount * iEurekaPerMillion;
-			iMaxReduction = iMaxReduction / 10000;
-			
-			local colorBegin = "";
-			local colorEnd = "";
-			if(iNbEureka < (iMaxEurekaCount*3)/10) then
-				colorBegin = "[COLOR_NEGATIVE_TEXT]";
-				colorEnd = "[ENDCOLOR]";
-			end
-			if(iNbEureka > (iMaxEurekaCount*6)/10) then
-				colorBegin = "[COLOR_POSITIVE_TEXT]";
-				colorEnd = "[ENDCOLOR]";
-			end
-			strHelpText = strHelpText .. Locale.ConvertTextKey("TXT_KEY_EUREKA_TOOLTIP", 
-				iNbEureka, iReduction, iMaxEurekaCount, iMaxReduction, colorBegin, colorEnd)
-				.. "[NEWLINE]";
-
-			-- Pre-written eureka help text
-			eurekaString = eurekaString .. "[NEWLINE]-------------------------[NEWLINE]";
-			eurekaString = eurekaString .. Locale.ConvertTextKey( pTechInfo.Help .. '_EUREKA' );
-		end
 	
 		local iProgress = pActivePlayer:GetResearchProgress(iTechID);
 		local bShowProgress = true;
 	
+		-- eureka
+		local eurekaLine = CreateEurekaResume(pTeamTechs, pTechInfo);
+		if(eurekaLine ~= "") then
+			strHelpText = strHelpText .. "[ICON_BULLET]" .. eurekaLine .. "[NEWLINE]";
+		
+			-- Pre-written eureka help text
+			eurekaString = eurekaString .. "[NEWLINE]-------------------------[NEWLINE]";
+			eurekaString = eurekaString .. Locale.ConvertTextKey( pTechInfo.Help .. '_EUREKA' );
+		end
+
 		-- Don't show progres if we have 0 or we're done with the tech
 		if (iProgress == 0 or pTeamTechs:HasTech(iTechID)) then
 			bShowProgress = false;
@@ -962,3 +936,4 @@ function GetShortHelpTextForTech( iTechID )
 	
 	return UnlocksString;
 end
+

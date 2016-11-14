@@ -5,6 +5,10 @@ Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7a) Civ6AdditionBuilder", 
 EndProject
 Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7a) Civ6AdditionEureka", "(7a) Civ6AdditionEureka\(7a) Civ6AdditionEureka.civ5proj", "{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}"
 EndProject
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7b) Civ6AdditionBuilder", "(2) Civ6AdditionBuilder\(7b) Civ6AdditionBuilder.civ5proj", "{91B9EF75-A57E-49EE-84F3-409D22350BBB}"
+EndProject
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7b) Civ6AdditionEureka", "(7b) Civ6AdditionEureka\(7b) Civ6AdditionEureka.civ5proj", "{42BE3F07-762B-4449-A334-A4EF1966BD22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|x86 = Default|x86
@@ -24,6 +28,18 @@ Global
 		{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}.Deploy Only|x86.Build.0 = Deploy Only|x86
 		{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}.Package Only|x86.ActiveCfg = Package Only|x86
 		{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}.Package Only|x86.Build.0 = Package Only|x86
+		{91B9EF75-A57E-49EE-84F3-409D22350BBB}.Default|x86.ActiveCfg = Default|x86
+		{91B9EF75-A57E-49EE-84F3-409D22350BBB}.Default|x86.Build.0 = Default|x86
+		{91B9EF75-A57E-49EE-84F3-409D22350BBB}.Deploy Only|x86.ActiveCfg = Deploy Only|x86
+		{91B9EF75-A57E-49EE-84F3-409D22350BBB}.Deploy Only|x86.Build.0 = Deploy Only|x86
+		{91B9EF75-A57E-49EE-84F3-409D22350BBB}.Package Only|x86.ActiveCfg = Package Only|x86
+		{91B9EF75-A57E-49EE-84F3-409D22350BBB}.Package Only|x86.Build.0 = Package Only|x86
+		{42BE3F07-762B-4449-A334-A4EF1966BD22}.Default|x86.ActiveCfg = Default|x86
+		{42BE3F07-762B-4449-A334-A4EF1966BD22}.Default|x86.Build.0 = Default|x86
+		{42BE3F07-762B-4449-A334-A4EF1966BD22}.Deploy Only|x86.ActiveCfg = Deploy Only|x86
+		{42BE3F07-762B-4449-A334-A4EF1966BD22}.Deploy Only|x86.Build.0 = Deploy Only|x86
+		{42BE3F07-762B-4449-A334-A4EF1966BD22}.Package Only|x86.ActiveCfg = Package Only|x86
+		{42BE3F07-762B-4449-A334-A4EF1966BD22}.Package Only|x86.Build.0 = Package Only|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

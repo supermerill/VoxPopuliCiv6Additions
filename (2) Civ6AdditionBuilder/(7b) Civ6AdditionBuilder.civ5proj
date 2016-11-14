@@ -2,10 +2,10 @@
 <Project DefaultTargets="Deploy" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
-    <ProjectGuid>{7d1e291d-b339-485f-bdd0-510198519417}</ProjectGuid>
-    <Name>(7a) Civ6AdditionBuilder</Name>
-    <Guid>2ef1cf97-62d6-419a-868d-944de6eb7f17</Guid>
-    <ModVersion>4</ModVersion>
+    <ProjectGuid>{91b9ef75-a57e-49ee-84f3-409d22350bbb}</ProjectGuid>
+    <Name>(7b) Civ6AdditionBuilder</Name>
+    <Guid>dc387f0e-35b4-4e78-aff4-411aca1adf38</Guid>
+    <ModVersion>3</ModVersion>
     <Stability>Stable</Stability>
     <Teaser>Transform workers into builders. Roads and railroads are built by trade routes.</Teaser>
     <Description>Transform workers into builders. Roads and railroads are built by trade routes.</Description>
@@ -17,8 +17,8 @@
     <SupportsMultiplayer>true</SupportsMultiplayer>
     <SupportsHotSeat>true</SupportsHotSeat>
     <SupportsMac>true</SupportsMac>
-    <AssemblyName>Civ6AdditionBuilder</AssemblyName>
-    <RootNamespace>Civ6AdditionBuilder</RootNamespace>
+    <AssemblyName>(2) Civ6AdditionBuilder</AssemblyName>
+    <RootNamespace>(2) Civ6AdditionBuilder</RootNamespace>
     <ModReferences />
     <ModDependencies>
       <Association>
@@ -28,20 +28,8 @@
         <MinVersion>0</MinVersion>
         <MaxVersion>999</MaxVersion>
       </Association>
-      <Association>
-        <Type>Mod</Type>
-        <Name>Community Balance Overhaul - Compatibility Files (EUI)</Name>
-        <Id>24923240-e4fb-4bf6-8f0e-6e5b6cf4d3c2</Id>
-        <MinVersion>0</MinVersion>
-        <MaxVersion>999</MaxVersion>
-      </Association>
     </ModDependencies>
     <ModActions>
-      <Action>
-        <Set>OnModActivated</Set>
-        <Type>UpdateDatabase</Type>
-        <FileName>Sql/Sql_changes.sql</FileName>
-      </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
@@ -50,7 +38,22 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>Sql/Civilopedia_changes.sql</FileName>
+        <FileName>Sql/CivilopediaChanges.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>Sql/CommonChanges.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>Sql/VanillaChanges.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>Sql/VP_changes.sql</FileName>
       </Action>
     </ModActions>
     <ModContent>
@@ -89,11 +92,15 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Sql\Civilopedia_changes.sql">
+    <Content Include="Sql\CivilopediaChanges.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Sql\Sql_changes.sql">
+    <Content Include="Sql\CommonChanges.sql">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
+    </Content>
+    <Content Include="Sql\VanillaChanges.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
