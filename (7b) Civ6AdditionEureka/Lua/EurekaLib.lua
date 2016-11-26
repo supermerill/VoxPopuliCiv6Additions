@@ -3,13 +3,14 @@
 -- DateCreated: 11/13/2016 7:02:20 PM
 --------------------------------------------------------------
 
-EUREKA_NOTIFICATION_ALL = false
+-- you can set it to false to only have eureka notification about researchable techs (= almost never)
+EUREKA_NOTIFICATION_ALL = true
 
 function SendEurekaNotiFication(pPlayer, pTeamTech, iTech, iPreviousEureka, iEurekaModif)
 	if(EUREKA_NOTIFICATION_ALL or pPlayer:CanResearch(iTech)) then
 		local pTechInfo = GameInfo.Technologies[iTech];
-		local iMinEurekaForUI = pTechInfo.MinEurekaForUI;
-		local minModif = (iPreviousEureka+iEurekaModif)/iMinEurekaForUI - iPreviousEureka/iMinEurekaForUI;
+		local iMod1000EurekaForUI = pTechInfo.Mod1000EurekaForUI;
+		local minModif = math.floor(((iPreviousEureka+iEurekaModif)*iMod1000EurekaForUI)/1000) - math.floor((iPreviousEureka*iMod1000EurekaForUI)/1000);
 		--check if it's enough to warrant a notification
 		if( minModif >0) then
 			local name = Locale.ConvertTextKey(pTechInfo.Description);
@@ -25,8 +26,6 @@ function SendEurekaNotiFication(pPlayer, pTeamTech, iTech, iPreviousEureka, iEur
 	end
 end
 
-
-
 function IncrementEureka(pPlayer, iTech, iMax)
 	local pTeam = Teams[pPlayer:GetTeam()];
 	local pTeamTech = pTeam:GetTeamTechs();
@@ -38,13 +37,14 @@ function IncrementEureka(pPlayer, iTech, iMax)
 		end
 	end
 end
-function IncrementEurekaGuarded(pPlayer, pTeamTech, iTech, iAmount, iMax)
+
+function ChangeEureka(pPlayer, pTeamTech, iTech, iAmount, iMax)
 	if(not pTeamTech:HasTech(iTech) and iAmount >0) then
 		local nbEureka = pTeamTech:GetEurekaCounter(iTech);
 		local teamMax = iMax*Teams[pPlayer:GetTeam()]:GetNumMembers();
 		if(nbEureka < teamMax) then
 			pTeamTech:SetEurekaCounter(iTech, math.min(teamMax,nbEureka+iAmount));
-			SendEurekaNotiFication(pPlayer, pTeamTech, iTech, nbEureka, iAmount);
+			SendEurekaNotiFication(pPlayer, pTeamTech, iTech, nbEureka, math.min(teamMax,nbEureka+iAmount) - nbEureka);
 		end
 	end
 end
@@ -52,19 +52,22 @@ end
 function MaxEureka(pPlayer, pTeamTech, iTech, iAmountNow, iMax)
 	if(not pTeamTech:HasTech(iTech) and iAmountNow >0) then
 		local nbEureka = pTeamTech:GetEurekaCounter(iTech);
-		local teamMax = iMax*Teams[pPlayer:GetTeam()]:GetNumMembers();
-		if(nbEureka < teamMax and iAmountNow > nbEureka) then
-			pTeamTech:SetEurekaCounter(iTech, math.min(teamMax,iAmountNow));
-			SendEurekaNotiFication(pPlayer, pTeamTech, iTech, nbEureka, iAmountNow - nbEureka);
+		local nbTeamMembers = Teams[pPlayer:GetTeam()]:GetNumMembers();
+		-- it's a false "max", as we consider allplayer as equal as the best one
+		local teamAmount = iAmountNow * nbTeamMembers
+		local teamMax = iMax * nbTeamMembers;
+		if(nbEureka < teamMax and teamAmount > nbEureka) then
+			pTeamTech:SetEurekaCounter(iTech, math.min(teamMax, teamAmount));
+			SendEurekaNotiFication(pPlayer, pTeamTech, iTech, nbEureka, math.min(teamMax, teamAmount) - nbEureka);
 		end
 	end
 end
 
 
 function CreateEurekaResume(pTeam, pTeamTechs, pTechInfo)
-	local iMinEurekaForUI = pTechInfo.MinEurekaForUI;
+	local iMod1000EurekaForUI = pTechInfo.Mod1000EurekaForUI;
 	local iNbEureka = pTeamTechs:GetEurekaCounter(pTechInfo.ID);
-	local iEurekaPerMillion = pTechInfo.EurekaPerMillion;
+	local iEurekaPerMillion = pTechInfo.EurekaPerMillion / pTeam:GetNumMembers();
 	local iMaxEurekaCount = pTechInfo.MaxEurekaCount * pTeam:GetNumMembers();
 	local strResume = "";
 	if(iEurekaPerMillion > 0) then
@@ -84,7 +87,7 @@ function CreateEurekaResume(pTeam, pTeamTechs, pTechInfo)
 			colorEnd = "[ENDCOLOR]";
 		end
 		strResume = strResume .. Locale.ConvertTextKey("TXT_KEY_EUREKA_TOOLTIP", 
-			iNbEureka/iMinEurekaForUI, iReduction, iMaxEurekaCount/iMinEurekaForUI, iMaxReduction, colorBegin, colorEnd);
+			(iNbEureka*iMod1000EurekaForUI)/1000, iReduction, (iMaxEurekaCount*iMod1000EurekaForUI)/1000, iMaxReduction, colorBegin, colorEnd);
 	end
 
 	return strResume;

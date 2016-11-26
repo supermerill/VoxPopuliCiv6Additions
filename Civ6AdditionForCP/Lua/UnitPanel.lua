@@ -1797,8 +1797,6 @@ function ActionToolTipHandler( control )
 			end
 		end
 
-		toolTip:insert( "is repaired? " .. buildID)
-
 		-- Resource connection
 		if improvement then
 			local resourceID = plot:GetResourceType(g_activeTeamID)

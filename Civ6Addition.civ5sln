@@ -9,6 +9,8 @@ Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7b) Civ6AdditionBuilder", 
 EndProject
 Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7b) Civ6AdditionEureka", "(7b) Civ6AdditionEureka\(7b) Civ6AdditionEureka.civ5proj", "{42BE3F07-762B-4449-A334-A4EF1966BD22}"
 EndProject
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "EnhancedCityStates", "EnhancedCityStates\EnhancedCityStates.civ5proj", "{904BA628-0380-4CBF-80A3-C062EF932E41}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Default|x86 = Default|x86
@@ -40,6 +42,12 @@ Global
 		{42BE3F07-762B-4449-A334-A4EF1966BD22}.Deploy Only|x86.Build.0 = Deploy Only|x86
 		{42BE3F07-762B-4449-A334-A4EF1966BD22}.Package Only|x86.ActiveCfg = Package Only|x86
 		{42BE3F07-762B-4449-A334-A4EF1966BD22}.Package Only|x86.Build.0 = Package Only|x86
+		{904BA628-0380-4CBF-80A3-C062EF932E41}.Default|x86.ActiveCfg = Default|x86
+		{904BA628-0380-4CBF-80A3-C062EF932E41}.Default|x86.Build.0 = Default|x86
+		{904BA628-0380-4CBF-80A3-C062EF932E41}.Deploy Only|x86.ActiveCfg = Deploy Only|x86
+		{904BA628-0380-4CBF-80A3-C062EF932E41}.Deploy Only|x86.Build.0 = Deploy Only|x86
+		{904BA628-0380-4CBF-80A3-C062EF932E41}.Package Only|x86.ActiveCfg = Package Only|x86
+		{904BA628-0380-4CBF-80A3-C062EF932E41}.Package Only|x86.Build.0 = Package Only|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

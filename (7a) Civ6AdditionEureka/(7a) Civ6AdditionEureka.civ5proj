@@ -40,6 +40,11 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
+        <FileName>Sql/EurekaLib.sql</FileName>
+      </Action>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
         <FileName>Sql/technology_eureka.sql</FileName>
       </Action>
     </ModActions>
@@ -70,6 +75,10 @@
     <Folder Include="Sql" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Lua\EurekaLib.lua">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
     <Content Include="Lua\Eurekas.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
@@ -85,6 +94,10 @@
     <Content Include="Lua\TechHelpInclude.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Sql\EurekaLib.sql">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="Sql\technology_eureka.sql">
       <SubType>Lua</SubType>

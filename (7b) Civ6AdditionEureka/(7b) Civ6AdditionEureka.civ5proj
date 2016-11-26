@@ -11,7 +11,7 @@
     <Description>Add eureka! as a science reduction for techs when players do some special actions.</Description>
     <Authors>merill</Authors>
     <SpecialThanks>VP team</SpecialThanks>
-    <AffectsSavedGames>false</AffectsSavedGames>
+    <AffectsSavedGames>true</AffectsSavedGames>
     <MinCompatibleSaveVersion>0</MinCompatibleSaveVersion>
     <SupportsSinglePlayer>true</SupportsSinglePlayer>
     <SupportsMultiplayer>true</SupportsMultiplayer>
@@ -37,6 +37,11 @@
       </Association>
     </ModDependencies>
     <ModActions>
+      <Action>
+        <Set>OnModActivated</Set>
+        <Type>UpdateDatabase</Type>
+        <FileName>Sql/EurekaLib.sql</FileName>
+      </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
@@ -89,6 +94,10 @@
     <Content Include="Lua\TechHelpInclude.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
+    </Content>
+    <Content Include="Sql\EurekaLib.sql">
+      <SubType>Lua</SubType>
+      <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
     <Content Include="Sql\technology_eureka.sql">
       <SubType>Lua</SubType>

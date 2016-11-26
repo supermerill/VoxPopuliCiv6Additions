@@ -33,39 +33,48 @@
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>Xml/Text_en_US.xml</FileName>
+        <FileName>Xml/Civ6_Builder_Text_en_US.xml</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>Sql/CivilopediaChanges.sql</FileName>
+        <FileName>Sql/Civ6Builder_civilopedia_changes.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>Sql/CommonChanges.sql</FileName>
+        <FileName>Sql/Civ6Builder_changes.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>Sql/VanillaChanges.sql</FileName>
+        <FileName>Sql/Civ6Builder_VanillaChanges.sql</FileName>
       </Action>
       <Action>
         <Set>OnModActivated</Set>
         <Type>UpdateDatabase</Type>
-        <FileName>Sql/VP_changes.sql</FileName>
+        <FileName>Sql/Civ6_Builder_VP_changes.sql</FileName>
       </Action>
     </ModActions>
     <ModContent>
-      <Content xmlns="">
+      <Content>
         <Type>InGameUIAddin</Type>
         <Name>remove_roads</Name>
         <Description>remove ia building road mission</Description>
-        <FileName>Lua/IA_roads_temp_fix.lua</FileName>
+        <FileName>Lua/Civ6Builder_IA_roads_temp_fix.lua</FileName>
       </Content>
     </ModContent>
     <ReloadUnitSystem>false</ReloadUnitSystem>
     <Homepage>http://forums.civfanatics.com/threads/civ6-additions-to-cp-roads-builders.603151/</Homepage>
+    <ModBlockers>
+      <Association xmlns="">
+        <Type>Mod</Type>
+        <Name>Mod	Community Balance Overhaul - Compatibility Files (EUI)</Name>
+        <Id>24923240-e4fb-4bf6-8f0e-6e5b6cf4d3c2</Id>
+        <MinVersion>0</MinVersion>
+        <MaxVersion>999</MaxVersion>
+      </Association>
+    </ModBlockers>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Default' ">
     <OutputPath>.</OutputPath>
@@ -84,7 +93,7 @@
     <Folder Include="Sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Lua\IA_roads_temp_fix.lua">
+    <Content Include="Lua\Civ6Builder_IA_roads_temp_fix.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
@@ -92,23 +101,23 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Sql\CivilopediaChanges.sql">
+    <Content Include="Sql\Civ6Builder_civilopedia_changes.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Sql\CommonChanges.sql">
+    <Content Include="Sql\Civ6Builder_changes.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Sql\VanillaChanges.sql">
+    <Content Include="Sql\Civ6Builder_VanillaChanges.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Sql\VP_changes.sql">
+    <Content Include="Sql\Civ6_Builder_VP_changes.sql">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Xml\Text_en_US.xml">
+    <Content Include="Xml\Civ6_Builder_Text_en_US.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>

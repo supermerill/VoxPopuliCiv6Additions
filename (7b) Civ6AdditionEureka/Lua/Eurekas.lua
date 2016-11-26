@@ -7,13 +7,15 @@ print("$$ Eurekas is loading $$");
 include("PlotIterators")
 include("EurekaLib")
 
-TERRAIN_TYPE_GRASS = TerrainTypes.TERRAIN_GRASS;
+local TERRAIN_TYPE_GRASS = TerrainTypes.TERRAIN_GRASS;
 TERRAIN_TYPE_PLAINS = TerrainTypes.TERRAIN_PLAINS;
 TERRAIN_TYPE_TUNDRA = TerrainTypes.TERRAIN_TUNDRA;
 TERRAIN_TYPE_DESERT = TerrainTypes.TERRAIN_DESERT;
 TERRAIN_TYPE_MOUNTAIN = TerrainTypes.TERRAIN_MOUNTAIN;
 TERRAIN_TYPE_COAST = TerrainTypes.TERRAIN_COAST;
 TERRAIN_TYPE_OCEAN = TerrainTypes.TERRAIN_OCEAN;
+
+local iGameSpeed = GameInfo.GameSpeeds[Game.GetGameSpeedType()].GrowthPercent / 100
 
 GameEvents.PlayerDoTurn.Add(function(iPlayer)
 -- euraka that are re-computed at the begining of the turn (ex: gold/t)
@@ -23,7 +25,7 @@ if(iPlayer >=0) then
 	local pTeamTech = pTeam:GetTeamTechs();
 	
 	-- max culture per turn for Drama
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_DRAMA.ID, pPlayer:GetTotalJONSCulturePerTurn(), 15);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_DRAMA.ID, math.floor(pPlayer:GetTotalJONSCulturePerTurn()/4), 10);
 		
 	-- cs friends for philosophy
 	-- cs ally for CIVIL_SERVICE
@@ -49,25 +51,25 @@ if(iPlayer >=0) then
 	end
 
 	-- max gold for CURRENCY
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_CURRENCY.ID, pPlayer:GetGold()/100, 6);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_CURRENCY.ID, math.floor(pPlayer:GetGold()/(iGameSpeed*100)), 6);
 	-- renaissance era tiers 1: yields per turn
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_BANKING.ID, pPlayer:CalculateGoldRate()/10, 6);
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_PRINTING_PRESS.ID, pPlayer:GetTourism(), 30);
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_ASTRONOMY.ID, pPlayer:GetTotalFaithPerTurn()/10, 6);
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_GUNPOWDER.ID, pPlayer:GetScoreFromMilitarySize()/10, 6);
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_CHEMISTRY.ID, pPlayer:GetScience()/10, 6);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_BANKING.ID, math.floor(pPlayer:CalculateGoldRate()/20), 6);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_PRINTING_PRESS.ID, math.floor(pPlayer:GetTourism()/5), 6);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_ASTRONOMY.ID, math.floor(pPlayer:GetTotalFaithPerTurn()/15), 6);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_GUNPOWDER.ID, math.floor(pPlayer:GetScoreFromMilitarySize()/10), 15);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_CHEMISTRY.ID, math.floor(pPlayer:GetScience()/30), 6);
 	-- renaissance era tiers 2
 	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_ARCHITECTURE.ID, pPlayer:GetNumWorldWonders(), 5);
-	--lux from deal: TECH_ECONOMICS
+	--todo lux from deal: TECH_ECONOMICS
 	--GetHappinessFromResources
 	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_ACOUSTICS.ID, pPlayer:GetNumGreatWorks(), 15);
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_METALLURGY.ID, pPlayer:GetLifetimeCombatExperience()/10, 6);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_METALLURGY.ID, math.floor(pPlayer:GetLifetimeCombatExperience()/20), 15);
 	
 	--industrial : rifling
 	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_RIFLING.ID, pPlayer:GetNumResourceTotal(GameInfoTypes.RESOURCE_IRON, true), 15);
 	--industrial : archealogy
 	if(pPlayer:IsGoldenAge()) then
-		IncrementEureka(pPlayer, GameInfo.Technologies.TECH_ARCHAEOLOGY.ID, 300);
+		ChangeEureka(pPlayer, GameInfo.Technologies.TECH_ARCHAEOLOGY.ID, math.floor(iGameSpeed*10), 3000);
 	end
 	--industrial : fertilizer
 	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_FERTILIZER.ID, pPlayer:GetNumResourceTotal(GameInfoTypes.RESOURCE_HORSE, true), 15);
@@ -81,13 +83,13 @@ if(iPlayer >=0) then
 	local nbCity = 0;
 	for pCity in pPlayer:Cities() do
 		nbCity = nbCity +1;
-		nbProd = nbProd + pCity:GetProduction();
+		nbProd = nbProd + pCity:GetYieldRate(YieldTypes.YIELD_PRODUCTION);
 		nbPop = nbPop + pCity:GetPopulation();
 	end
 	-- industrial: prod/city => steam power
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_STEAM_POWER.ID, nbProd/nbCity, 30);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_STEAM_POWER.ID, math.floor(nbProd/(nbCity*5)), 30);
 	-- modern: pop/city => biology
-	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.BIOLOGY.ID, nbPop/nbCity, 30);
+	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_BIOLOGY.ID, math.floor(nbPop/(nbCity*3)), 30);
 	--end
 	-- modern: oil => plastic
 	MaxEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_PLASTIC.ID, pPlayer:GetNumResourceTotal(GameInfoTypes.RESOURCE_OIL, true), 10);
@@ -110,7 +112,7 @@ GameEvents.TileRevealed.Add(function(iPlotX, iPlotY, iTeam, iFromTeam, bFirst)
 if(iTeam >= 0 and iPlotX >= 0 and iPlotY >=0) then
 	local pPlot = Map.GetPlot(iPlotX, iPlotY);
 	local pTeam = Teams[iTeam];
-	loacl iTerrainType = pPlot:GetTerrainType();
+	local iTerrainType = pPlot:GetTerrainType();
 	print("EEEEE Eurekas !! " .. iTeam .. " hex revealed! ".. iTerrainType);
 	-- number of classical era tech for writing
 	if(iTerrainType == TERRAIN_TYPE_COAST or iTerrainType == TERRAIN_TYPE_SEA) then
@@ -131,7 +133,7 @@ if(iPlayer >=0 and iFeature == FeatureTypes.FEATURE_FOREST and eNewFeature == Fe
 	local pTeam = Teams[pPlayer:GetTeam()];
 	local pTeamTech = pTeam:GetTeamTechs();
 	-- nbForest cleared for metal casting
-	IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_METAL_CASTING.ID, 1, 6);
+	ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_METAL_CASTING.ID, 1, 6);
 end
 end);
 
@@ -146,11 +148,11 @@ if(iPlayer >=0 and iUnit >=0)then
 print("EEEEE Eurekas !! GreatPersonExpended! type = ".. iUnitType);
 	-- nbGreat engineer used for ENGINEERING
 	if(iUnitType == GameInfo.Units.UNIT_ENGINEER.ID) then
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_ENGINEERING.ID, 1, 2);
+		ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_ENGINEERING.ID, 1, 2);
 	end
 	-- nbGreat scientist used for education
 	if(iUnitType == GameInfo.Units.UNIT_SCIENTIST.ID) then
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_EDUCATION.ID, 1, 2);
+		ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_EDUCATION.ID, 1, 2);
 		-- nb academies for SCIENTIFIC_THEORY
 		local pPlot = Map.GetPlot(iPlotX, iPlotY);
 		if(pPlot:GetImprovementType() == GameInfo.Improvements.IMPROVEMENT_ACADEMY.ID) then
@@ -159,15 +161,15 @@ print("EEEEE Eurekas !! GreatPersonExpended! type = ".. iUnitType);
 	end
 	-- nbGreat general used for military science
 	if(iUnitType == GameInfo.Units.UNIT_GREAT_GENERAL.ID) then
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.MILITARY_SCIENCE.ID, 1, 5);
+		ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.MILITARY_SCIENCE.ID, 1, 5);
 	end
 	-- nbGreat merchant used for electricity
 	if(iUnitType == GameInfo.Units.UNIT_MERCHANT.ID) then
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_ELECTRICITY.ID, 1, 6);
+		ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_ELECTRICITY.ID, 1, 6);
 	end
 	-- nbGreat musician used for radio
 	if(iUnitType == GameInfo.Units.UNIT_MUSICIAN.ID) then
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_RADIO.ID, 1, 6);
+		ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_RADIO.ID, 1, 6);
 	end
 	
 end
@@ -262,23 +264,23 @@ if(iPlayer >=0 and iBuilding>=0) then
 	-- shrine and monument for wheel now jungle
 	--if(iBuilding == GameInfo.Buildings.BUILDING_SHRINE.ID or iBuilding == GameInfo.Buildings.BUILDING_MONUMENT.ID
 	-- or iBuilding == GameInfo.Buildings.BUILDING_MONUMENT.ID or iBuilding == GameInfo.Buildings.BUILDING_STELE.ID) then 
-	--	IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_THE_WHEEL.ID, 1, 3);
+	--	ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_THE_WHEEL.ID, 1, 3);
 	--end
 	-- buildings for construction (named masonery, but it's construction) -- now quarry lux
 	--if(not pTeamTech:HasTech(GameInfo.Technologies.TECH_MASONRY.ID)) then
-	--	IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_MASONRY.ID, 1, 10);
+	--	ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_MASONRY.ID, 1, 10);
 	--end
 	-- market for mathematics
 	if(iBuilding == GameInfo.Buildings.BUILDING_MARKET.ID or iBuilding == GameInfo.Buildings.BUILDING_BAZAAR.ID) then 
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_MATHEMATICS.ID, 1, 3);
+		ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_MATHEMATICS.ID, 1, 3);
 	end
 	-- walls for chivalery
 	if(iBuilding == GameInfo.Buildings.BUILDING_WALLS.ID or iBuilding == GameInfo.Buildings.BUILDING_WALLS_OF_BABYLON.ID) then 
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_CHIVALRY.ID, 1, 5);
+		ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_CHIVALRY.ID, 1, 5);
 	end
 	-- factory for replaceable parts
 	if(iBuilding == GameInfo.Buildings.BUILDING_FACTORY.ID or iBuilding == GameInfo.Buildings.BUILDING_STEAM_MILL.ID) then 
-		IncrementEurekaGuarded(pPlayer, pTeamTech, GameInfo.Technologies.TECH_REPLACEABLE_PARTS.ID, 1, 5);
+		ChangeEureka(pPlayer, pTeamTech, GameInfo.Technologies.TECH_REPLACEABLE_PARTS.ID, 1, 5);
 	end
 end
 end);
@@ -367,39 +369,39 @@ if(iPlayer >=0 and iPlotX >=0 and iPlotY >=0) then
 	end
 	-- nbTundra for trapping
 	if(nbTundra>0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_TRAPPING.ID, nbTundra, 6);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_TRAPPING.ID, nbTundra, 6);
 	end
 	-- nbWheat for pottery
 	if(nbWheat>0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_POTTERY.ID, nbWheat, 3);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_POTTERY.ID, nbWheat, 3);
 	end
 	-- nbJungle for wheel
 	if(nbJungle>0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_THE_WHEEL.ID, nbJungle, 6);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_THE_WHEEL.ID, nbJungle, 6);
 	end
 	-- nbHills for animal husbandry
 	if(nbHills>0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_ANIMAL_HUSBANDRY.ID, nbHills, 10);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_ANIMAL_HUSBANDRY.ID, nbHills, 6);
 	end
 	-- nb mine lux for mining
 	if(nbMineLux>0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_MINING.ID, nbMineLux, 5);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_MINING.ID, nbMineLux, 5);
 	end
 	-- nb quarry lux for construction
 	if(nbQuarryLux>0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_MASONRY.ID, nbQuarryLux, 3);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_MASONRY.ID, nbQuarryLux, 3);
 	end
 	--number of nearby plantation lux at 2 hex of a new city for CALENDAR
 	if(nbLuxPlant>0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_CALENDAR.ID, nbLuxPlant, 5);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_CALENDAR.ID, nbLuxPlant, 5);
 	end
 	--number of nearby desert & montains at 2 hex of a new city for trading
 	if(nbDesert+nbMountain > 0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_HORSEBACK_RIDING.ID, nbMountain+nbMountain+nbDesert, 15);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_HORSEBACK_RIDING.ID, nbMountain+nbMountain+nbDesert, 15);
 	end
 	--number of nearby forest at 2 hex of a new city for Bronze
 	if(nbForest > 0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_BRONZE_WORKING.ID, nbForest, 15);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_BRONZE_WORKING.ID, nbForest, 15);
 	end
 	--number of fresh water city for masonery
 	if(pCity:Plot():IsFreshWater()) then
@@ -407,7 +409,7 @@ if(iPlayer >=0 and iPlotX >=0 and iPlotY >=0) then
 	end
 	-- number of lux for guilds
 	if(nbLux > 0) then
-		IncrementEurekaGuarded(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_GUILDS.ID, nbLux, 15);
+		ChangeEureka(pPlayer, pTeam:GetTeamTechs(), GameInfo.Technologies.TECH_GUILDS.ID, nbLux, 15);
 	end
 end
 end);
