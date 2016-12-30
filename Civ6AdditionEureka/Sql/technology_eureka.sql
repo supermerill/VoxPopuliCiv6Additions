@@ -65,7 +65,7 @@ UPDATE Technologies SET EurekaPerMillion = 20000, MaxEurekaCount = 15 WHERE Type
 --industrial
 UPDATE Technologies SET EurekaPerMillion = 40000, MaxEurekaCount = 5 WHERE Type = 'TECH_SCIENTIFIC_THEORY';
 UPDATE Technologies SET EurekaPerMillion = 0, MaxEurekaCount = 6 WHERE Type = 'TECH_RAILROAD';
-UPDATE Technologies SET EurekaPerMillion = 50000, MaxEurekaCount = 6, Mod1000EurekaForUI = 5000 WHERE Type = 'TECH_STEAM_POWER';
+UPDATE Technologies SET EurekaPerMillion = 50000, MaxEurekaCount = 6, Mod1000EurekaForUI = 10000 WHERE Type = 'TECH_STEAM_POWER';
 UPDATE Technologies SET EurekaPerMillion = 10000, MaxEurekaCount = 20 WHERE Type = 'TECH_RIFLING';
 
 UPDATE Technologies SET EurekaPerMillion = 1000, MaxEurekaCount = 300, Mod1000EurekaForUI = 100 WHERE Type = 'TECH_ARCHAEOLOGY';
@@ -87,191 +87,190 @@ UPDATE Technologies SET EurekaPerMillion = 10000, MaxEurekaCount = 30 WHERE Type
 UPDATE Technologies SET EurekaPerMillion = 30000, MaxEurekaCount = 8 WHERE Type = 'TECH_BALLISTICS';
 
 -- text
-
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per tundra at 2 hex of your city (max 6).'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Tundra[ENDCOLOR] within 2 tiles of your cities. Max 30%'
 ,'TXT_KEY_TECH_TRAPPING_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -10% cost per wheat at 2 hex of your city (max 3)'
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for every [ICON_RES_WHEAT] [COLOR_POSITIVE_TEXT]Wheat[ENDCOLOR] within 2 tiles of your cities.'
 ,'TXT_KEY_TECH_POTTERY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per jungle at 2 hex of your city (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Jungle[ENDCOLOR] within 2 tiles of your cities.'
 ,'TXT_KEY_TECH_THE_WHEEL_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per unfeature hill at 2 hex of your city (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Hill[ENDCOLOR] that does not have a feature within 2 tiles of your cities.'
 ,'TXT_KEY_TECH_ANIMAL_HUSBANDRY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -6% cost per mineable luxury at 2 hex of your city (max 5)'
+VALUES ('Eureka: -6% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Mineable Luxury[ENDCOLOR] within 2 tiles of your cities.'
 ,'TXT_KEY_TECH_MINING_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -10% cost per coastal city (max 3)'
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Coastal City[ENDCOLOR] settled.'
 ,'TXT_KEY_TECH_SAILING_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per desert and -4% per mountain tile in 2 hex of a city (max 30%)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Desert[ENDCOLOR] and -4% for every [COLOR_POSITIVE_TEXT]Mountain[ENDCOLOR] within 2 tiles of your cities.'
 ,'TXT_KEY_TECH_HORSEBACK_RIDING_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -10% cost for each plantation luxury in 2 hex of a city (max 5)'
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Plantation Luxury[ENDCOLOR] within 2 tiles of your cities. Max 50%'
 ,'TXT_KEY_TECH_CALENDAR_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost for each newly trained archer (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Archer[ENDCOLOR] trained.'
 ,'TXT_KEY_TECH_ARCHERY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -10% cost per quarry luxury (max 3)'
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Quarry Luxury[ENDCOLOR] within 2 tiles of your cities.'
 ,'TXT_KEY_TECH_MASONRY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per forest in 2 hex of a city (max 15)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Forest[ENDCOLOR] within 2 tiles of your cities.'
 ,'TXT_KEY_TECH_BRONZE_WORKING_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per work boat built (max 6)'
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Work Boat[ENDCOLOR] built.'
 ,'TXT_KEY_TECH_OPTICS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per classical technology (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Classical Technology[ENDCOLOR] researched.'
 ,'TXT_KEY_TECH_WRITING_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -10% cost per market built (max 3)'
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Market[ENDCOLOR] built.'
 ,'TXT_KEY_TECH_MATHEMATICS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -10% cost per city with fresh water'
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for every city with [COLOR_POSITIVE_TEXT]Access to Fresh Water[ENDCOLOR].'
 ,'TXT_KEY_TECH_CONSTRUCTION_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost for each spearman trained (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Spearman[ENDCOLOR] trained.'
 ,'TXT_KEY_TECH_IRON_WORKING_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -3% cost per 4 culture per turn (max 30%)'
+VALUES ('Eureka: -3% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]+4 [ICON_CULTURE] Culture per turn[ENDCOLOR] you produce.'
 ,'TXT_KEY_TECH_DRAMA_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per friendly city-state'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [ICON_CITY_STATE] City-State [COLOR_POSITIVE_TEXT]Friend[ENDCOLOR].'
 ,'TXT_KEY_TECH_PHILOSOPHY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -15% cost per engineer expanded'
+VALUES ('Eureka: -15% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT][ICON_GREAT_ENGINEER] Great Engineer[ENDCOLOR] expended.'
 ,'TXT_KEY_TECH_ENGINEERING_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per 100 gold (at normal speed) in your treasury (max 30%)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]100 [ICON_GOLD] Gold (at normal speed) in your treasury[ENDCOLOR].'
 ,'TXT_KEY_TECH_CURRENCY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per forest chopped'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Forest[ENDCOLOR] chopped.'
 ,'TXT_KEY_TECH_METAL_CASTING_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -10% cost for each scientist expanded (max 3)'
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT][ICON_GREAT_SCIENTIST] Great Scientist[ENDCOLOR] expended.'
 ,'TXT_KEY_TECH_EDUCATION_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -6% cost for each missionary trained (max 5)'
+VALUES ('Eureka: -6% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Missionary[ENDCOLOR] recruited.'
 ,'TXT_KEY_TECH_THEOLOGY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -6% cost per wall built (max 5)'
+VALUES ('Eureka: -6% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Walls[ENDCOLOR] built.'
 ,'TXT_KEY_TECH_CHIVALRY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -6% cost per catapult trained (max 5)'
+VALUES ('Eureka: -6% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Catapult[ENDCOLOR] constructed.'
 ,'TXT_KEY_TECH_PHYSICS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per swordman trained (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Swordsman[ENDCOLOR] trained.'
 ,'TXT_KEY_TECH_STEEL_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per allied city-state (max 4)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [ICON_CITY_STATE] City-State [COLOR_POSITIVE_TEXT]Allies[ENDCOLOR].'
 ,'TXT_KEY_TECH_CIVIL_SERVICE_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per Luxuries in a radius of 2 hex of your cities (max 15)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Luxuries[ENDCOLOR] within 2 tiles of your cities.'
 ,'TXT_KEY_TECH_GUILDS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per war boat constructed (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Trireme[ENDCOLOR] or [COLOR_POSITIVE_TEXT]Galleass[ENDCOLOR] constructed.'
 ,'TXT_KEY_TECH_COMPASS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -4% cost for each composite bowman trained (max 5)'
+VALUES ('Eureka: -4% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Composite Bowman[ENDCOLOR] trained.'
 ,'TXT_KEY_TECH_MACHINERY_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per 20 gold per turn (max 30%)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]+20 [ICON_GOLD] Gold per turn[ENDCOLOR] you produce.'
 ,'TXT_KEY_TECH_BANKING_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per 5 tourism per turn (max 30%)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]+5 [ICON_TOURISM] Tourism per turn[ENDCOLOR] you produce.'
 ,'TXT_KEY_TECH_PRINTING_PRESS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per 15 faith per turn (max 30%)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]+15 [ICON_PEACE] Faith per turn[ENDCOLOR] you produce.'
 ,'TXT_KEY_TECH_ASTRONOMY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per 10 military power (max 30%)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]10 Military Might[ENDCOLOR].'
 ,'TXT_KEY_TECH_GUNPOWDER_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per 30 science per turn (max 30%)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]+30 [ICON_RESEARCH] Science per turn[ENDCOLOR] you produce.'
 ,'TXT_KEY_TECH_CHEMISTRY_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per wonder (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Wonder[ENDCOLOR] controlled.'
 ,'TXT_KEY_TECH_ARCHITECTURE_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -3% cost per incoming traded luxury (max 10)' --todo
+VALUES ('Eureka: -3% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Imported Luxury[ENDCOLOR].' --todo
 ,'TXT_KEY_TECH_ECONOMICS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per great work (max 15)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT][ICON_GREAT_WORK] Great Works[ENDCOLOR] created.'
 ,'TXT_KEY_TECH_ACOUSTICS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per 10 sea tile revealed (max 30%)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]10 Sea Tile[ENDCOLOR] revealed.'
 ,'TXT_KEY_TECH_NAVIGATION_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per 20 Combat Experience (max 30%)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]20 National Combat Experience[ENDCOLOR]'
 ,'TXT_KEY_TECH_METALLURGY_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -4% cost per Adcademy (max 5)'
+VALUES ('Eureka: -4% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Academy[ENDCOLOR] constructed.'
 ,'TXT_KEY_TECH_SCIENTIFIC_THEORY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
 VALUES ('Eureka: nothing'  --todo
 ,'TXT_KEY_TECH_RAILROAD_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per 5 production per city (max 30%)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]City with a [ICON_PRODUCTION] Production of 5+[ENDCOLOR].'
 ,'TXT_KEY_TECH_STEAM_POWER_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -1% cost per iron (max 20)'
+VALUES ('Eureka: -1% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT][ICON_RES_IRON] Iron[ENDCOLOR] controlled.'
 ,'TXT_KEY_TECH_RIFLING_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -1% cost per Golden age turn at normal speed (max 30)'
+VALUES ('Eureka: -1% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT][ICON_GOLDEN_AGE] Golden Age turn passed at normal speed[ENDCOLOR].'
 ,'TXT_KEY_TECH_ARCHAEOLOGY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per horse (max 15)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT][ICON_RES_HORSE] Horse[ENDCOLOR] controlled.'
 ,'TXT_KEY_TECH_FERTILIZER_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -10% cost per coal mine worked (max 3)'
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT][ICON_RES_COAL] Worked Coal Mine[ENDCOLOR].'
 ,'TXT_KEY_TECH_INDUSTRIALIZATION_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per coal (max 15)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT][ICON_RES_COAL] Coal[ENDCOLOR] controlled.'
 ,'TXT_KEY_TECH_DYNAMITE_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -6% cost per great general expanded (max 5)'
+VALUES ('Eureka: -6% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT][ICON_GREAT_GENERAL] Great General[ENDCOLOR] expended.'
 ,'TXT_KEY_TECH_MILITARY_SCIENCE_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -3% cost per 3 population per city (max 10)'
+VALUES ('Eureka: -3% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]City with a [ICON_CITIZEN] Population of 3+[ENDCOLOR].'
 ,'TXT_KEY_TECH_BIOLOGY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per Merchant expanded (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT][ICON_GREAT_MERCHANT] Great Merchant[ENDCOLOR] expended.'
 ,'TXT_KEY_TECH_ELECTRICITY_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -10% cost per monopoly (max 3)' --todo
+VALUES ('Eureka: -10% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Resource Monopoly[ENDCOLOR] owned.' --todo
 ,'TXT_KEY_TECH_CORPORATIONS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -6% cost per factory (max 5)'
+VALUES ('Eureka: -6% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Factory[ENDCOLOR] built.'
 ,'TXT_KEY_TECH_REPLACEABLE_PARTS_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -3% cost per steam ship built or upgraded (max 10)'
+VALUES ('Eureka: -3% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Ironclad[ENDCOLOR] or [COLOR_POSITIVE_TEXT]Cruiser[ENDCOLOR] constructed or upgraded.'
 ,'TXT_KEY_TECH_COMBUSTION_HELP_EUREKA');
 
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -2% cost per oil (max 10)'
+VALUES ('Eureka: -2% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT][ICON_RES_OIL] Oil[ENDCOLOR] controlled.'
 ,'TXT_KEY_TECH_PLASTIC_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -5% cost per musician expanded (max 6)'
+VALUES ('Eureka: -5% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT][ICON_GREAT_MUSICIAN] Great Musician[ENDCOLOR] expended.'
 ,'TXT_KEY_TECH_RADIO_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -1% cost per triplan built in the world (max 30)'
+VALUES ('Eureka: -1% [ICON_RESEARCH] Cost for each [COLOR_POSITIVE_TEXT]Triplane[ENDCOLOR] built in the world by other Civilizations.'
 ,'TXT_KEY_TECH_FLIGHT_HELP_EUREKA');
 INSERT INTO Language_en_US (Text, Tag)
-VALUES ('Eureka: -3% cost per war fought (max 8)'
+VALUES ('Eureka: -3% [ICON_RESEARCH] Cost for every [COLOR_POSITIVE_TEXT]Past War[ENDCOLOR] fought.'
 ,'TXT_KEY_TECH_BALLISTICS_HELP_EUREKA');
 
 

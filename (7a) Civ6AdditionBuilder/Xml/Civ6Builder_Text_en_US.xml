@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created by ModBuddy on 10/29/2016 7:41:40 PM -->
+<GameData>
+	<Language_en_US>
+		<Row Tag="TXT_KEY_UPANEL_BUILDER">
+			<Text>
+				[ICON_WORKER] :
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_UPANEL_BUILDER_TT">
+			<Text>
+				Each improvement consume 100 [ICON_WORKER].
+			</Text>
+		</Row>
+		<Row Tag="TXT_KEY_STR_BUILDER_COST">
+			<Text>Cost {1_Num} [ICON_WORKER]</Text>
+		</Row>
+		<Row Tag="TXT_KEY_STR_BUILDER_COST_SMALL">
+			<Text>{1_Num} [ICON_WORKER]</Text>
+		</Row>
+	</Language_en_US>
+  
+</GameData>

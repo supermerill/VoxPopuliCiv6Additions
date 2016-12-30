@@ -2,16 +2,16 @@
 <Project DefaultTargets="Deploy" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
-    <ProjectGuid>{f04f5eff-2bf6-4ef8-95bf-b4c9bc2d0550}</ProjectGuid>
-    <Name>(7a) Civ6AdditionEureka</Name>
-    <Guid>7b60abab-0083-4aa5-92aa-832180d7da9b</Guid>
-    <ModVersion>2</ModVersion>
+    <ProjectGuid>42BE3F07-762B-4449-A334-A4EF1966BD22</ProjectGuid>
+    <Name>(7b) Civ6AdditionEureka</Name>
+    <Guid>5acc6f58-862d-4d61-9bf1-0e5dbf938021</Guid>
+    <ModVersion>3</ModVersion>
     <Stability>Beta</Stability>
     <Teaser>Add eureka! as a science reduction for techs when players do some special actions.</Teaser>
     <Description>Add eureka! as a science reduction for techs when players do some special actions.</Description>
     <Authors>merill</Authors>
     <SpecialThanks>VP team</SpecialThanks>
-    <AffectsSavedGames>false</AffectsSavedGames>
+    <AffectsSavedGames>true</AffectsSavedGames>
     <MinCompatibleSaveVersion>0</MinCompatibleSaveVersion>
     <SupportsSinglePlayer>true</SupportsSinglePlayer>
     <SupportsMultiplayer>true</SupportsMultiplayer>
@@ -30,8 +30,8 @@
       </Association>
       <Association>
         <Type>Mod</Type>
-        <Name>Community Balance Overhaul - Compatibility Files (EUI)</Name>
-        <Id>24923240-e4fb-4bf6-8f0e-6e5b6cf4d3c2</Id>
+        <Name>CBO compatibility files (no-eui)</Name>
+        <Id>828b5b4b-7c62-4afb-a43f-034b596ef5e4</Id>
         <MinVersion>0</MinVersion>
         <MaxVersion>999</MaxVersion>
       </Association>
@@ -71,8 +71,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="Lua" />
+    <Folder Include="Lua\VP\" />
     <Folder Include="Xml" />
     <Folder Include="Sql" />
+    <Folder Include="Xml\VP\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Lua\EurekaLib.lua">
@@ -83,7 +85,7 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Lua\NotificationPanel.lua">
+    <Content Include="Lua\VP\NotificationPanel.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -91,7 +93,7 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
-    <Content Include="Lua\TechHelpInclude.lua">
+    <Content Include="Lua\VP\TechHelpInclude.lua">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>
@@ -103,7 +105,7 @@
       <SubType>Lua</SubType>
       <ImportIntoVFS>False</ImportIntoVFS>
     </Content>
-    <Content Include="Xml\NotificationPanel.xml">
+    <Content Include="Xml\VP\NotificationPanel.xml">
       <SubType>Lua</SubType>
       <ImportIntoVFS>True</ImportIntoVFS>
     </Content>

@@ -1,15 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # ModBuddy Solution File, Format Version 11.00
-Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7a) Civ6AdditionBuilder", "Civ6AdditionForCP\(7a) Civ6AdditionBuilder.civ5proj", "{7D1E291D-B339-485F-BDD0-510198519417}"
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7a) Civ6AdditionBuilder", "(7a) Civ6AdditionBuilder\(7a) Civ6AdditionBuilder.civ5proj", "{7D1E291D-B339-485F-BDD0-510198519417}"
 EndProject
-Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7a) Civ6AdditionEureka", "(7a) Civ6AdditionEureka\(7a) Civ6AdditionEureka.civ5proj", "{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}"
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7a) Civ6AdditionEureka", "Civ6AdditionEureka\(7a) Civ6AdditionEureka.civ5proj", "{F04F5EFF-2BF6-4EF8-95BF-B4C9BC2D0550}"
 EndProject
 Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7b) Civ6AdditionBuilder", "(2) Civ6AdditionBuilder\(7b) Civ6AdditionBuilder.civ5proj", "{91B9EF75-A57E-49EE-84F3-409D22350BBB}"
 EndProject
-Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7b) Civ6AdditionEureka", "(7b) Civ6AdditionEureka\(7b) Civ6AdditionEureka.civ5proj", "{42BE3F07-762B-4449-A334-A4EF1966BD22}"
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "(7b) Civ6AdditionEureka", "Civ6AdditionEureka\(7b) Civ6AdditionEureka.civ5proj", "{42BE3F07-762B-4449-A334-A4EF1966BD22}"
 EndProject
 Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "EnhancedCityStates", "EnhancedCityStates\EnhancedCityStates.civ5proj", "{904BA628-0380-4CBF-80A3-C062EF932E41}"
+EndProject
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "AnyPantheon", "AnyPantheon\AnyPantheon.civ5proj", "{4E46EE9A-4AAE-4209-AC30-1075E68162B9}"
+EndProject
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "HarderCulturalVictory", "HarderCulturalVictory\HarderCulturalVictory.civ5proj", "{DB2650B8-3E9A-4266-8E18-27F60D59D553}"
+EndProject
+Project("{F5FC21B5-7CC2-458A-ABBA-992F515BBA20}") = "LiberateWithTechs", "LiberateWithTechs\LiberateWithTechs.civ5proj", "{A0E8253C-DCE4-44FE-BC8A-DD117F7D0BE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -48,6 +54,24 @@ Global
 		{904BA628-0380-4CBF-80A3-C062EF932E41}.Deploy Only|x86.Build.0 = Deploy Only|x86
 		{904BA628-0380-4CBF-80A3-C062EF932E41}.Package Only|x86.ActiveCfg = Package Only|x86
 		{904BA628-0380-4CBF-80A3-C062EF932E41}.Package Only|x86.Build.0 = Package Only|x86
+		{4E46EE9A-4AAE-4209-AC30-1075E68162B9}.Default|x86.ActiveCfg = Default|x86
+		{4E46EE9A-4AAE-4209-AC30-1075E68162B9}.Default|x86.Build.0 = Default|x86
+		{4E46EE9A-4AAE-4209-AC30-1075E68162B9}.Deploy Only|x86.ActiveCfg = Deploy Only|x86
+		{4E46EE9A-4AAE-4209-AC30-1075E68162B9}.Deploy Only|x86.Build.0 = Deploy Only|x86
+		{4E46EE9A-4AAE-4209-AC30-1075E68162B9}.Package Only|x86.ActiveCfg = Package Only|x86
+		{4E46EE9A-4AAE-4209-AC30-1075E68162B9}.Package Only|x86.Build.0 = Package Only|x86
+		{DB2650B8-3E9A-4266-8E18-27F60D59D553}.Default|x86.ActiveCfg = Default|x86
+		{DB2650B8-3E9A-4266-8E18-27F60D59D553}.Default|x86.Build.0 = Default|x86
+		{DB2650B8-3E9A-4266-8E18-27F60D59D553}.Deploy Only|x86.ActiveCfg = Deploy Only|x86
+		{DB2650B8-3E9A-4266-8E18-27F60D59D553}.Deploy Only|x86.Build.0 = Deploy Only|x86
+		{DB2650B8-3E9A-4266-8E18-27F60D59D553}.Package Only|x86.ActiveCfg = Package Only|x86
+		{DB2650B8-3E9A-4266-8E18-27F60D59D553}.Package Only|x86.Build.0 = Package Only|x86
+		{A0E8253C-DCE4-44FE-BC8A-DD117F7D0BE2}.Default|x86.ActiveCfg = Default|x86
+		{A0E8253C-DCE4-44FE-BC8A-DD117F7D0BE2}.Default|x86.Build.0 = Default|x86
+		{A0E8253C-DCE4-44FE-BC8A-DD117F7D0BE2}.Deploy Only|x86.ActiveCfg = Deploy Only|x86
+		{A0E8253C-DCE4-44FE-BC8A-DD117F7D0BE2}.Deploy Only|x86.Build.0 = Deploy Only|x86
+		{A0E8253C-DCE4-44FE-BC8A-DD117F7D0BE2}.Package Only|x86.ActiveCfg = Package Only|x86
+		{A0E8253C-DCE4-44FE-BC8A-DD117F7D0BE2}.Package Only|x86.Build.0 = Package Only|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
