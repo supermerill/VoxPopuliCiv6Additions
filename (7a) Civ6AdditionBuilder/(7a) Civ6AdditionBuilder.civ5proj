@@ -8,7 +8,8 @@
     <ModVersion>3</ModVersion>
     <Stability>Stable</Stability>
     <Teaser>Transform workers into builders. Roads and railroads are built by trade routes.</Teaser>
-    <Description>Transform workers into builders. Roads and railroads are built by trade routes.</Description>
+    <Description>Transform workers into builders. Roads and railroads are built by trade routes.
+Work only with EUI.</Description>
     <Authors>merill</Authors>
     <SpecialThanks>VP team</SpecialThanks>
     <AffectsSavedGames>false</AffectsSavedGames>

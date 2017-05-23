@@ -53,6 +53,7 @@
     <DeployMod>true</DeployMod>
   </PropertyGroup>
   <ItemGroup>
+    <Folder Include="Lua" />
     <Folder Include="Sql" />
   </ItemGroup>
   <ItemGroup>

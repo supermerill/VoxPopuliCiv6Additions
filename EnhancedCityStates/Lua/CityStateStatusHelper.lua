@@ -220,7 +220,7 @@ function UpdateCityStateStatusBar(majorPlayerID, minorPlayerID, posBarCtrl, negB
 		local iInf = minorPlayer:GetMinorCivFriendshipWithMajor(majorPlayerID)
 
 		if iInf >= 0 then
-			local percentFull = math_abs(iInf) / ScaleMinorCivBonus(majorPlayer, kPosInfRange)
+			local percentFull = math_abs(iInf) / ScaleMinorCivBonus(majorPlayer, minorPlayer, kPosInfRange)
 			local xOffset = math_min(percentFull * kPosBarRange, kPosBarRange)
 			barMarkerCtrl:SetOffsetX(xOffset)
 			if gk_mode and info and info.PositiveStatusMeter then
@@ -438,7 +438,7 @@ function GetCityStateStatusToolTip( majorPlayerID, minorPlayerID, isFullInfo )
 		-- Status
 		tip = tip .. " " .. GetCityStateStatusText( majorPlayerID, minorPlayerID )
 		table_insert( tips, tip )
-
+		
 		-- Influence change
 		if gk_mode then
 			local influenceAnchor = minorPlayer:GetMinorCivFriendshipAnchorWithMajor(majorPlayerID)
@@ -579,8 +579,7 @@ function GetAllyToolTip( majorPlayerID, minorPlayerID )
 		elseif(minorPlayer:IsNoAlly()) then
 			toolTip = L("TXT_KEY_CITY_STATE_ALLY_NOBODY_PERMA")
 		else
-			local kPlayerThresholdAllies = ScaleMinorCivBonus(majorPlayer, GameDefines.FRIENDSHIP_THRESHOLD_ALLIES)
-			print("check allies status: " .. kPlayerThresholdAllies);
+			local kPlayerThresholdAllies = ScaleMinorCivBonus(majorPlayer, minorPlayer, GameDefines.FRIENDSHIP_THRESHOLD_ALLIES)
 			local influenceUntilAllied = kPlayerThresholdAllies - minorCivFriendshipWithMajor
 			if gk_mode then
 				toolTip = L( "TXT_KEY_CITY_STATE_ALLY_NOBODY_TT", influenceUntilAllied )
@@ -914,8 +913,7 @@ function GetCityStateStatusAlly( majorPlayerID, minorPlayerID, isFullInfo )
 				toolTip = L("TXT_KEY_CITY_STATE_ALLY_UNKNOWN_TT", minorCivFriendshipAlly )
 			end
 		else
-			local kPlayerThresholdAllies = ScaleMinorCivBonus(majorPlayer, GameDefines.FRIENDSHIP_THRESHOLD_ALLIES)
-			print("check allies status22: " .. kPlayerThresholdAllies);
+			local kPlayerThresholdAllies = ScaleMinorCivBonus(majorPlayer, minorPlayer, GameDefines.FRIENDSHIP_THRESHOLD_ALLIES)
 			toolTip = L("TXT_KEY_CITY_STATE_ALLY_NOBODY_TT", kPlayerThresholdAllies - minorCivFriendshipWithMajor )
 		end
 		if not isFullInfo then
@@ -927,13 +925,13 @@ function GetCityStateStatusAlly( majorPlayerID, minorPlayerID, isFullInfo )
 	return toolTip
 end
 
-function ScaleMinorCivBonus(majorPlayer, value)
+function ScaleMinorCivBonus(majorPlayer, minorPlayer, value)
 	local modifiedValue = value
 	if majorPlayer:GetCurrentEra() >= kEraIndustrial then
 		modifiedValue = modifiedValue * kModIndustrial
 	elseif majorPlayer:GetCurrentEra() >= kEraMedieval then
 		modifiedValue = modifiedValue * kModMedieval
 	end
-	modifiedValue = modifiedValue * ( 1 + math.max(0, kModMoreCities*(majorPlayer:GetNumCities()-1)) )
+	modifiedValue = modifiedValue * ( 1 + math.max(0, kModMoreCities*(minorPlayer:GetNumCities()-1)) )
 	return modifiedValue;
 end
